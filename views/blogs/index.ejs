@@ -9,8 +9,8 @@
     <h1>All Blogs</h1>
     <ul>
     <% blogs.forEach(blog => { %>
-      <li><%= blog.title %></li>
-    <% }); %>
+      <li><a href="/blogs/<%= blog._id %>"><%= blog.title %></a></li>
+    <% }); %>   
   </ul>
   <a href="/blogs/new">Add New Blog</a>
   </body>

@@ -45,6 +45,11 @@ app.get("/blogs", async (req, res) => {
   res.render("blogs/index.ejs", { blogs: allBlogs });
 });
 
+app.get("/blogs/:blogId", async (req, res) => {
+    const foundBlog = await Blog.findById(req.params.blogId);
+    res.render("blogs/show.ejs", { blog: foundBlog });
+});
+
 app.listen(3000, () => {
   console.log('Listening on port 3000');
 });
