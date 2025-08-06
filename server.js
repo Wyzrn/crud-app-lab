@@ -68,6 +68,21 @@ app.get("/blogs/:blogId/edit", async (req, res) => {
   });
 });
 
+app.put("/blogs/:blogId", async (req, res) => {
+  // Handle the 'isReadyToPost' checkbox data
+  if (req.body.isReadyToPost === "on") {
+    req.body.isReadyToPost = true;
+  } else {
+    req.body.isReadyToPost = false;
+  }
+  
+  // Update the blog in the database
+  await Blog.findByIdAndUpdate(req.params.blogId, req.body);
+
+  // Redirect to the blog's show page to see the updates
+  res.redirect(`/blogs/${req.params.blogId}`);
+});
+
 app.listen(3000, () => {
   console.log('Listening on port 3000');
 });
