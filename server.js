@@ -39,6 +39,12 @@ app.post("/blogs", async (req, res) => {
   res.redirect("/blogs/new");
 });
 
+app.get("/blogs", async (req, res) => {
+  const allBlogs = await Blog.find();
+  console.log(allBlogs);
+  res.render("blogs/index.ejs", { blogs: allBlogs });
+});
+
 app.listen(3000, () => {
   console.log('Listening on port 3000');
 });
