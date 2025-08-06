@@ -2,9 +2,12 @@
 // We begin by loading Express
 const express = require('express');
 const dotenv = require("dotenv"); // require package
+const methodOverride = require("method-override"); // new
+const morgan = require("morgan"); //new
+const mongoose = require("mongoose");
 dotenv.config(); // Loads the environment variables from .env file
 const app = express();
-const mongoose = require("mongoose");
+
 
 
 mongoose.connect(process.env.MONGODB_URI);
@@ -15,6 +18,8 @@ mongoose.connection.on("connected", () => {
 
 const Blog = require("./models/blog.js");
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method")); // new
+app.use(morgan("dev")); //new
 // server.js
 
 // GET /
@@ -48,6 +53,11 @@ app.get("/blogs", async (req, res) => {
 app.get("/blogs/:blogId", async (req, res) => {
     const foundBlog = await Blog.findById(req.params.blogId);
     res.render("blogs/show.ejs", { blog: foundBlog });
+});
+
+app.delete("/blogs/:blogId", async (req, res) => {
+    await Blog.findByIdAndDelete(req.params.blogId);
+    res.redirect("/blogs");
 });
 
 app.listen(3000, () => {

@@ -14,7 +14,9 @@
   <% } else { %>
     <p>This blog is not ready to post!</p>
   <% } %> <!-- Display fruit name -->
-    <!-- Add more details about the fruit here -->
+    <form action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
+        <button type="submit">Delete <%= blog.title %></button>
+    </form>
      <a href="/blogs/">Back to Blogs</a>
   </body>
 </html>
