@@ -12,11 +12,17 @@ mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
+
+const Blog = require("./models/blog.js");
 // server.js
 
 // GET /
 app.get("/", async (req, res) => {
   res.render("index.ejs");
+});
+
+app.get("/blogs/new", (req, res) => { //blogs new route
+  res.render("blogs/new.ejs");
 });
 
 app.listen(3000, () => {
