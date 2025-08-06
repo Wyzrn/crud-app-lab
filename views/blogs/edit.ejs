@@ -1,0 +1,15 @@
+<body>
+  <!-- update the header -->
+  <h1>Edit <%= blog.title %></h1>
+  <form action="/blogs/<%=blog._id%>?_method=PUT" method="POST">
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title" value="<%= blog.title %>" />
+    <label for="body">Body:</label>
+    <input type="text" name="body" id="body" value="<%= blog.body %>" />
+    <label for="isReadyToPost">Ready to Post?</label>
+    <input type="checkbox" name="isReadyToPost" id="isReadyToPost" <% if (blog.isReadyToPost) { %>checked<% } %> />
+    <!-- update the button text -->
+    <button type="submit">Update Blog</button>
+  </form>
+  <a href="/blogs">Back to Blogs</a>
+</body>

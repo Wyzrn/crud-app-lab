@@ -60,6 +60,14 @@ app.delete("/blogs/:blogId", async (req, res) => {
     res.redirect("/blogs");
 });
 
+app.get("/blogs/:blogId/edit", async (req, res) => {
+  const foundBlog = await Blog.findById(req.params.blogId);
+  console.log(foundBlog);
+  res.render("blogs/edit.ejs", {
+    blog: foundBlog,
+  });
+});
+
 app.listen(3000, () => {
   console.log('Listening on port 3000');
 });

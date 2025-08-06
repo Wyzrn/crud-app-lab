@@ -17,6 +17,7 @@
     <form action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
         <button type="submit">Delete <%= blog.title %></button>
     </form>
-     <a href="/blogs/">Back to Blogs</a>
+        <a href="/blogs/<%= blog._id %>/edit">Edit <%= blog.title %></a>
+        <a href="/blogs/">Back to Blogs</a>
   </body>
 </html>
