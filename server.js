@@ -36,7 +36,7 @@ app.post("/blogs", async (req, res) => {
   }
     console.log(req.body);
   await Blog.create(req.body);
-  res.redirect("/blogs/new");
+  res.redirect("/blogs");
 });
 
 app.get("/blogs", async (req, res) => {
