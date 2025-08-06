@@ -14,6 +14,7 @@ mongoose.connection.on("connected", () => {
 });
 
 const Blog = require("./models/blog.js");
+app.use(express.urlencoded({ extended: false }));
 // server.js
 
 // GET /
@@ -23,6 +24,19 @@ app.get("/", async (req, res) => {
 
 app.get("/blogs/new", (req, res) => { //blogs new route
   res.render("blogs/new.ejs");
+});
+
+
+// POST /fruits
+app.post("/blogs", async (req, res) => {
+  if (req.body.isReadyToPost === "on") {
+    req.body.isReadyToPost = true;
+  } else {
+    req.body.isReadyToPost = false;
+  }
+    console.log(req.body);
+  await Blog.create(req.body);
+  res.redirect("/blogs/new");
 });
 
 app.listen(3000, () => {
